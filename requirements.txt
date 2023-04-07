@@ -1,0 +1,16 @@
+Django
+django-celery-results
+django-celery-beat
+django-redis
+django-rest-auth
+djangorestframework
+djangorestframework_simplejwt
+django-stubs
+django-environ
+django-rest-swagger
+celery
+pytest
+pytest-celery
+pytest-django
+pytest-factoryboy
+python-dateutil
