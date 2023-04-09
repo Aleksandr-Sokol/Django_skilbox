@@ -15,7 +15,7 @@ class Category(models.Model):
 class Instance(models.Model):
     vendor_code = models.CharField('Артикул', max_length=90, blank=False)
     name = models.CharField('Наименование', max_length=90, blank=False)
-    categories = models.ManyToManyField("Category", verbose_name="Категории", related_name='instances')
+    categories = models.ManyToManyField(Category, verbose_name="Категории")
 
     class Meta:
         verbose_name = 'Экземпляр'
