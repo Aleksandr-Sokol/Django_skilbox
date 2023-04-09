@@ -1,0 +1,29 @@
+{% extends 'admin/base.html' %}
+  <style>
+    input.float_left {
+      float: left;
+    }
+
+    input.float_left.start {
+      background: #4caf50;
+    }
+
+    h1.float_left.progress {
+        background: #ffffff;
+        display: inline-block;
+        float: left;
+        color: #0f0f0f;
+        padding: 0.5em 0.5em 0.5em;
+    }
+  </style>
+{% block content %}
+    <div>
+        <form action="." method="POST" enctype="multipart/form-data">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Импортировать данные из csv файла" class="float_left start">
+        </form>
+    </div>
+    <br />
+
+{% endblock %}

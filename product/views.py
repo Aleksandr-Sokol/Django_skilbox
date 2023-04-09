@@ -1,14 +1,7 @@
 from rest_framework import viewsets
 from .models import Goods, Instance, Basket, Category
 from .serializer import InstanceListSerializer
-from django.core.paginator import Paginator
-from django.db import connection, reset_queries
-import time
-import functools
 from .service import CommonResultsSetPagination
-from django.db.models import F, Q
-from django.db.models import Prefetch
-from django.db.models import Avg, Count
 
 
 class InstanceView(viewsets.ModelViewSet):

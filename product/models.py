@@ -29,8 +29,8 @@ class Instance(models.Model):
 
 
 class Goods(models.Model):
-    price = models.IntegerField('Цена', blank=False)
-    count = models.IntegerField('Количество на складе', blank=False)
+    price = models.IntegerField('Цена', default=0)
+    count = models.IntegerField('Количество на складе', default=0)
     instance = models.ForeignKey(
         Instance,
         verbose_name='Экземпляр',
@@ -47,7 +47,7 @@ class Goods(models.Model):
 
 
 class Basket(models.Model):
-    count = models.IntegerField('Количество', blank=False)
+    count = models.IntegerField('Количество', default=0)
     goods = models.ForeignKey(
         Instance,
         verbose_name='Товар',
