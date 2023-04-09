@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.shortcuts import redirect, render
 from django.urls import path
-from .models import Goods, Instance, Basket, Category
+from .models import Goods, Instance, Basket, Category, UserBasket, Shop
 from django import forms
 from django.db import transaction
 from .service import parsing_scv
@@ -58,3 +58,13 @@ class BasketAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Category._meta.fields]
+
+
+@admin.register(UserBasket)
+class UserBasketAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in UserBasket._meta.fields]
+
+
+@admin.register(Shop)
+class ShopAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Shop._meta.fields]

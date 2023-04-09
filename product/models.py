@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField('Наименование категории', max_length=90, blank=False)
@@ -56,8 +56,40 @@ class Basket(models.Model):
     )
 
     class Meta:
+        verbose_name = 'Покупка в корзине'
+        verbose_name_plural = 'Покупки в корзине'
+
+    def __str__(self):
+        return f'{self.count}'
+
+
+class UserBasket(models.Model):
+    user = models.ForeignKey(
+        User, verbose_name='Покупатель', on_delete=models.CASCADE,
+    )
+    goods = models.ForeignKey(
+        Basket,
+        verbose_name='Товар',
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзина'
 
     def __str__(self):
-        return f'{self.count}'
+        return f'{self.user}'
+
+
+class Shop(models.Model):
+    user = models.ForeignKey(
+        User, verbose_name='Покупатель', on_delete=models.CASCADE,
+    )
+    goods = models.JSONField()
+
+    class Meta:
+        verbose_name = 'Покупки'
+        verbose_name_plural = 'Покупки'
+
+    def __str__(self):
+        return f'{self.user}'
