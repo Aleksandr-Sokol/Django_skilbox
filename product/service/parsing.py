@@ -29,9 +29,8 @@ def to_string(shops: list) -> str:
         id = shop.id
         data = shop.goods
         for d_dict in data:
-            summa = d_dict.get("summ", 0)
             count = d_dict.get("count", 0)
             name = d_dict["goods"]["name"]
             vendor_code = d_dict["goods"]["vendor_code"]
-            result.append(f'{id}, {user}, {count}, {summa}, {name}, {vendor_code}')
+            result.append(f'{id}, {user}, {count}, {name}, {vendor_code}')
     return '\n'.join(result)

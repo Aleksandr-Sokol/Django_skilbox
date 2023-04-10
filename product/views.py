@@ -27,7 +27,7 @@ class InstanceView(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         self.query_name = request.GET.get("name", None)
-        self.query_category = request.GET.get("category", "Верхняя одежда")
+        self.query_category = request.GET.get("category", None)
         return super().list(request, *args, **kwargs)
 
 
