@@ -39,8 +39,8 @@ class Goods(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
+        verbose_name = 'Склад'
+        verbose_name_plural = 'Склад'
 
     def __str__(self):
         return f'{self.price}'
@@ -50,7 +50,7 @@ class Basket(models.Model):
     count = models.IntegerField('Количество', default=0)
     goods = models.ForeignKey(
         Instance,
-        verbose_name='Товар',
+        verbose_name='Предмет',
         related_name='goods',
         on_delete=models.CASCADE,
     )
@@ -67,11 +67,7 @@ class UserBasket(models.Model):
     user = models.ForeignKey(
         User, verbose_name='Покупатель', on_delete=models.CASCADE,
     )
-    goods = models.ForeignKey(
-        Basket,
-        verbose_name='Товар',
-        on_delete=models.CASCADE,
-    )
+    goods = models.ManyToManyField(Basket, verbose_name="Товары для покупки")
 
     class Meta:
         verbose_name = 'Корзина'
