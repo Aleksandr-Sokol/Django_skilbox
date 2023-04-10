@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import path
 from .models import Goods, Instance, Basket, Category, UserBasket, Shop
 from django import forms
 from django.db import transaction
 from .service import parsing_scv
+from .service.parsing import to_string
 
 
 class CSVImportForm(forms.Form):
@@ -68,3 +70,21 @@ class UserBasketAdmin(admin.ModelAdmin):
 @admin.register(Shop)
 class ShopAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Shop._meta.fields]
+    change_list_template = "admin/changelist_export.html"
+
+    def get_urls(self):
+        urls = super().get_urls()
+        my_urls = [
+            path('export_catalog_item/', self.export_catalog_item),
+        ]
+        return my_urls + urls
+
+    def export_catalog_item(self, request):
+        if request.method == "GET":
+            shops = Shop.objects.all()
+            filename = "export.csv"
+            response = HttpResponse(content_type='text/plain')
+            response['Content-Disposition'] = f'attachment; filename="{filename}"'
+            response.write(to_string(shops))
+            return response
+        return redirect(".")

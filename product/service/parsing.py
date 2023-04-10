@@ -19,3 +19,19 @@ def parsing_scv(data: str):
         if not good_created:
             goods.count += int(line[3])
             goods.save()
+
+
+def to_string(shops: list) -> str:
+    result = []
+
+    for shop in shops:
+        user = shop.user
+        id = shop.id
+        data = shop.goods
+        for d_dict in data:
+            summa = d_dict.get("summ", 0)
+            count = d_dict.get("count", 0)
+            name = d_dict["goods"]["name"]
+            vendor_code = d_dict["goods"]["vendor_code"]
+            result.append(f'{id}, {user}, {count}, {summa}, {name}, {vendor_code}')
+    return '\n'.join(result)

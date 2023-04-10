@@ -1,0 +1,27 @@
+{% extends 'admin/change_list.html' %}
+  <style>
+    input.float_left {
+      float: left;
+    }
+
+    input.float_left.start {
+      background: #4caf50;
+    }
+
+    h1.float_left.progress {
+        background: #ffffff;
+        display: inline-block;
+        float: left;
+        color: #0f0f0f;
+        padding: 0.5em 0.5em 0.5em;
+    }
+  </style>
+
+{% block object-tools %}
+    <form action="export_catalog_item/" method="GET">
+        {% csrf_token %}
+        <input type="submit" value="Экспорт" onClick="this.form.submit(); this.disabled=true;"/>
+    </form>
+    {{ block.super }}
+
+{% endblock %}
