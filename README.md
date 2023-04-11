@@ -21,6 +21,7 @@ docker-compose up или docker-compose up --build
 
 Импорт данных:
 > http://localhost:8080/admin/product/goods/
+*Пример файла находится в /examples/import.csv*
 
 Экспорт данных:
 > http://localhost:8080/admin/product/shop/
@@ -38,7 +39,7 @@ docker-compose up или docker-compose up --build
 > BODY
 > 
 > {
-	"basket_id": <USERBASKET id>
+	"basket_id": "USERBASKET id"
 }
 
 
