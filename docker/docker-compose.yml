@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  postgresql:
+    restart: always
+    image: postgres:12.2
+    environment:
+      PGDATA: /var/lib/postgresql/profile_data
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_PORT: 5432
+    ports:
+      - 5432:5432
+
+
+  magazine:
+    restart: always
+    environment:
+      POSTGRES_HOST: postgresql
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      DEBUG: 1
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - postgresql
+    volumes:
+      - ./../:/app/:delegated
+    ports:
+      - 8080:8080

@@ -14,5 +14,5 @@ pytest-celery
 pytest-django
 pytest-factoryboy
 python-dateutil
-csv
 django-otp
+psycopg2-binary
